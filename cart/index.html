@@ -11,15 +11,16 @@
         <h1>Your Cart</h1>
     </header>
     <main>
-        <form>
+        <form action="https://formspree.io/f/xdkooqgn" method="post">
             <div id="cart-items">
                 <!-- Cart items will be dynamically added here -->
                 
             </div>
             <p id="total"></p>
-            <button type="submit" id="checkout-btn"><a class="checkout-link" href="/payment/">checkout</a></button>
+            <button type="submit" id="checkout-btn">Check Out</button>
         </form>
-        <p>Click Checkout to proceed to payment and enter the total amount</p>
+        <p>Click Checkout comee back to payment and enter the total amount</p>
+        <a class="checkout-link" href="/payment/">checkout</a>
         <a href="/home/" class="home">Continue Shopping</a>
     </main>
     <footer>
@@ -58,6 +59,13 @@
                         <img src="${item.image}" class="cart-image" />
                         <p class="add-item">${item.name} (${item.color} | ${item.size}) - #${item.price} x ${item.quantity} = #${item.price * item.quantity}</p>
                         <button class="remove-btn" data-index="${index}">Remove</button>
+                        
+                        <input type="hidden" name="item_name" value="${item.name}">
+                        <input type="hidden" name="item_color" value="${item.color}">
+                        <input type="hidden" name="item_size" value="${item.size}">
+                        <input type="hidden" name="item_quantity" value="${item.quantity}">
+                        <input type="hidden" name="item_price" value="${item.price}">
+                        <input type="hidden" name="item_total" value="${item.quantity * item.price}">
                     `;
                     cartContainer.appendChild(productElement);
                     totalPrice += item.price * item.quantity;
