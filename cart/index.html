@@ -55,6 +55,7 @@
                 cart.forEach((item, index) => {
                     const productElement = document.createElement("div");
                     productElement.innerHTML = `
+                        <img src="${item.image}" class="cart-image" />
                         <p class="add-item">${item.name} (${item.color} | ${item.size}) - #${item.price} x ${item.quantity} = #${item.price * item.quantity}</p>
                         <button class="remove-btn" data-index="${index}">Remove</button>
                     `;
