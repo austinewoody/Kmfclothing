@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Your Cart</h1>
+    </header>
+    <main>
+        <form>
+            <div id="cart-items">
+                <!-- Cart items will be dynamically added here -->
+                
+            </div>
+            <p id="total"></p>
+            <button type="submit" id="checkout-btn"><a class="checkout-link" href="payment.html">checkout</a></button>
+        </form>
+        <p>Click Checkout to proceed to payment and enter the total amount</p>
+        <a href="index.html" class="home">Continue Shopping</a>
+    </main>
+    <footer>
+        <p>© 2024 KMF Clothings. All rights reserved.</p>
+    </footer>
+    <!--<script>
+        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartList = document.getElementById("cart-items");
+        const totalElement = document.getElementById("total");
+
+        let total = 0;
+
+        cartItems.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = `${item.name} - #${item.price}`;
+            cartList.appendChild(li);
+            total += item.price;
+        });
+
+        totalElement.textContent = `Total: #${total}`;
+    </script>-->
+
+    <script>
+        function renderCart() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartContainer = document.getElementById("cart-items");
+            const totalPriceElement = document.getElementById("total");
+        
+            cartContainer.innerHTML = ""; // Clear existing items
+            let totalPrice = 0;
+        
+            if (cart.length > 0) {
+                cart.forEach((item, index) => {
+                    const productElement = document.createElement("div");
+                    productElement.innerHTML = `
+                        <p class="add-item">${item.name} (${item.color} | ${item.size}) - #${item.price} x ${item.quantity} = #${item.price * item.quantity}</p>
+                        <button class="remove-btn" data-index="${index}">Remove</button>
+                    `;
+                    cartContainer.appendChild(productElement);
+                    totalPrice += item.price * item.quantity;
+                });
+        
+                totalPriceElement.textContent = `Total: #${totalPrice}`;
+            } else {
+                cartContainer.textContent = "Your cart is empty!";
+                totalPriceElement.textContent = "";
+            }
+        
+            // Add event listeners to remove buttons
+            document.querySelectorAll(".remove-btn").forEach((button) => {
+                button.addEventListener("click", () => {
+                    const index = parseInt(button.getAttribute("data-index"));
+                    removeFromCart(index);
+                });
+            });
+        }
+        
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1); // Remove item by index
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCart(); // Re-render cart
+        }
+        
+        // Initial render
+        renderCart();
+
+
+        /*function populateForm() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartItemsContainer = document.getElementById("cart-items");
+            const totalElement = document.getElementById("total");
+            
+            cartItemsContainer.innerHTML = ""; // Clear any existing items
+            let totalPrice = 0;
+            
+            // Loop through the cart and add hidden inputs
+            cart.forEach((item, index) => {
+                // Hidden input for product details
+                const productInput = document.createElement("input");
+                productInput.type = "hidden";
+                productInput.name = `product_${index + 1}`; // Unique name for each product
+                productInput.value = `Name: ${item.name}, Price: ${item.price}, Quantity: ${item.quantity}, Color: ${item.color}`;
+                cartItemsContainer.appendChild(productInput);
+        
+                totalPrice += item.price * item.quantity;
+            });
+        
+            // Hidden input for total price
+            const totalInput = document.createElement("input");
+            totalInput.type = "hidden";
+            totalInput.name = "total"; // Name attribute for total price
+            totalInput.value = `Total: #${totalPrice}`;
+            cartItemsContainer.appendChild(totalInput);
+            
+            // Update total price display
+            totalElement.textContent = `Total: #${totalPrice}`;
+        }
+        
+        // Attach event listener to the checkout button
+        document.getElementById("checkout-btn").addEventListener("click", (event) => {
+            populateForm();
+        });*/
+        
+        
+    </script>
+</body>
+</html>
