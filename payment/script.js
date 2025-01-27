@@ -44,7 +44,7 @@ document.querySelectorAll(".add-to-cart").forEach((button) => {
     button.addEventListener("click", () => {
         const name = button.getAttribute("data-product");
         const price = parseInt(button.getAttribute("data-price"));
-
+        const image = button.getAttribute("data-image");
         const productContainer = button.parentElement;
         const size = productContainer.querySelector(".size").value;
         const color = productContainer.querySelector(".color").value;
@@ -59,7 +59,7 @@ document.querySelectorAll(".add-to-cart").forEach((button) => {
             return;
         }
 
-        const product = { name, price, color, size, quantity };
+        const product = { name, price, image, color, size, quantity };
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
         
         // Check if product already exists in the cart
