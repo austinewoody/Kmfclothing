@@ -251,8 +251,12 @@ footer {
 }
 
 .checkout-link{
-    color: white;
+    border: thin solid rgb(51, 5, 5);
     text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(51, 5, 5);
+    color: white;
 }
 
 .pay-link{
